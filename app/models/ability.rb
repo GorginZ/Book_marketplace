@@ -1,11 +1,6 @@
 # frozen_string_literal: true
-
 class Ability
-  include CanCan::Ability
-
-  def initialize(user)
-    class Ability
-      include CanCan::Ability
+      include CanCan::Ability  
     
       def initialize(user)
         can :read, Listing, public: true
