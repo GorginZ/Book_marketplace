@@ -13,7 +13,7 @@
      <%= link_to 'Categories', categories_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">My Listings </a>
+        <%= link_to 'My Listings', new_listing_path, class: "nav-link" %>
       </li>
        <li class="nav-item">
         <a class="nav-link" href="#">My Orders </a>
@@ -36,4 +36,9 @@
       <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
+  <% if user_signed_in?%>
+          <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "nav-link" %>
+        <%else%>
+          <%= link_to 'Sign in', new_user_session_path, class: "nav-link" %>
+        <%end%>
 </nav>

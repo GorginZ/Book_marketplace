@@ -37,10 +37,6 @@ class ListingsController < ApplicationController
     end
   end
 
-  def my_listings
-    @listings = current_user.listings
-  end
-
   # PATCH/PUT /listings/1
   # PATCH/PUT /listings/1.json
   def update
@@ -53,6 +49,10 @@ class ListingsController < ApplicationController
         format.json { render json: @listing.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def my_listings
+    @listings = current_user.listings
   end
 
   # DELETE /listings/1
