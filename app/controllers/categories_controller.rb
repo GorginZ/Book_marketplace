@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
     def index
-        @categories = Category.all
+        @category = Category.all
       end
     
       # GET /listings/1
@@ -65,6 +65,6 @@ class CategoriesController < ApplicationController
     
         # Only allow a list of trusted parameters through.
         def category_params
-          params.require(:category).permit(:book_category)
+          params.require(:category).permit(:book_category) # should this be params.require(:book_category).permit(:book_category)
         end
 end
