@@ -5,9 +5,15 @@
   <%= @category.book_category %>
 </p>
 
-  <strong>Category:</strong>
+  <strong>Summary:</strong>
   <%= @category.summary %>
 </p>
 
-<%= link_to 'Edit', edit_category_path(@category) %> 
 <%= link_to 'Back', categories_path %>
+
+  <% if can? :edit, @category %>
+            <td><%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-info' %></td>
+          <% end %>
+       
+        </tr>
+     
