@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
     def index
         @categories = Category.all
       end
@@ -52,7 +55,7 @@ class CategoriesController < ApplicationController
       def destroy
         @category.destroy
         respond_to do |format|
-          format.html { redirect_to category_url, notice: 'Category was successfully destroyed.' }
+          format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
           format.json { head :no_content }
         end
       end
@@ -65,6 +68,6 @@ class CategoriesController < ApplicationController
     
         # Only allow a list of trusted parameters through.
         def category_params
-          params.require(:category).permit(:book_category) # should this be params.require(:book_category).permit(:book_category)
+          params.require(:category).permit(:book_category, :summary) # should this be params.require(:book_category).permit(:book_category)
         end
 end
