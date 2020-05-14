@@ -9,8 +9,10 @@ class Ability
           can :read, Listing, user_id: user.id
     
           if user.admin?  # additional permissions for administrators
-            can :read, Listing
-          end
+            can :manage, :all
+          else
+            can :read, :all
+          end #is this enough ends?
         end
       end
     end
