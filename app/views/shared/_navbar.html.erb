@@ -6,12 +6,15 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+    <% if user_signed_in? %>
     <button type="button" class="btn btn-outline-secondary">
   Inbox <span class="badge badge-light">4</span>
 </button>
       <li class="nav-item">
+      <%end%>
      <%= link_to 'Categories', categories_path, class: "nav-link" %>
       </li>
+       <% if user_signed_in? %>
       <li class="nav-item">
         <%= link_to 'My Listings', new_listing_path, class: "nav-link" %>
       </li>
@@ -24,10 +27,10 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Help</a>
-          <a class="dropdown-item" href="#">Manage password</a>
-          <%= link_to 'My Account', edit_user_registration_path, class: "nav-link" %>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Log Off</a>
+                    <div class="dropdown-divider"></div>
+
+          <%= link_to 'manage account', edit_user_registration_path, class: "nav-link" %>
+          <%end%>
         </div>
       </li>
     </ul>
