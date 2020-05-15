@@ -13,7 +13,7 @@ class ListingsController < ApplicationController
   # GET /listings/1
   # GET /listings/1.json
   def show
-    @category = Category.find_by_id(@listing.category_id).book_category 
+     @category_id = Category.find_by_id(@listing.category_id)
   end
 
   # GET /listings/new
