@@ -1,53 +1,56 @@
 # Test admin
-adm = User.create(
-  user_name: "Admin",
-  email: 'admin@test.com',
-  password: '123456',
-  admin: true
-)
-User.create(
-  user_name: "Admin",
-  email: 'admin@test.com',
-  password: '123456',
-  admin: false
-)
 
- Category.create(
-book_category: "Literature",
-summary: "Classics, Critical Theory, Literary Criticism"
- )
+# adm = User.create(
+#   user_name: "Admin",
+#   email: 'admin@test.com',
+#   password: '123456',
+#   admin: true
+# )
+# 10.times do 
+#   User.create(
+#   user_name: Faker::Name.name,
+#   email: Faker::Internet.email,
+#   password: '123456',
+#   admin: false
+# )
+# end
+#  Category.create(
+# book_category: "Literature",
+# summary: "Classics, Critical Theory, Literary Criticism"
+#  )
 
- Category.create(
-  book_category: "Law",
-  summary: "Corporate law, Criminal law, Copywrite law, all the law you want"
- )
- Category.create(
-  book_category: "Biomed",
-  summary: "Cellular biology, neurology"
- )
- Category.create(
-  book_category: "Mathematics",
-  summary: "Calculus, Mathematics theory"
- )
- Category.create(
-   book_category: "Philosophy",
-   summary: "Ethics, Bioethics, Peter Singer, Metaphysics, Peter Singer"
- )
+#  Category.create(
+#   book_category: "Law",
+#   summary: "Corporate law, Criminal law, Copywrite law, all the law you want"
+#  )
+#  Category.create(
+#   book_category: "Biomed",
+#   summary: "Cellular biology, neurology"
+#  )
+#  Category.create(
+#   book_category: "Mathematics",
+#   summary: "Calculus, Mathematics theory"
+#  )
+#  Category.create(
+#    book_category: "Philosophy",
+#    summary: "Ethics, Bioethics, Peter Singer, Metaphysics, Peter Singer"
+#  )
 
- Category.create(
-   book_category: "Latin",
-   summary: "carpe diem"
- )
+#  Category.create(
+#    book_category: "Latin",
+#    summary: "carpe diem"
+#  )
 
-5.times do 
+20.times do 
   Listing.create(
   title: "textbook",
-  isbn: 1234567890,
+  ISBN: 1234567890,
   author: "author of book",
-  category: [1..6].sample,
+  category_id: (1..6).to_a.sample,
   keywords: "literary theory",
   available: true,
-  visible: true
+  visible: true,
+  user_id: (1..11).to_a.sample
   
 )
 end
