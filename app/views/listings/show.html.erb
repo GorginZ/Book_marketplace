@@ -35,9 +35,8 @@
   <strong>Visible:</strong>
   <%= @listing.visible %>
 </p>
+<%= link_to 'Back', listings_path %>
 
 <% if can? :edit, Listing %>
 <%= link_to 'Edit', edit_listing_path(@listing) %> 
-<%else%>
-<%= link_to 'Back', listings_path %>
 <%end%>

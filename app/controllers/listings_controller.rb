@@ -8,6 +8,7 @@ class ListingsController < ApplicationController
   # GET /listings.json
   def index
     @listings = Listing.all
+
   end
 
   # GET /listings/1
@@ -60,6 +61,7 @@ class ListingsController < ApplicationController
   def my_listings
     @listings = current_user.listings
   end
+
 
   # DELETE /listings/1
   # DELETE /listings/1.json
