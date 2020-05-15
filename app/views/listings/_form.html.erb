@@ -26,9 +26,10 @@
     <%= form.text_field :author %>
   </div>
 
+
    <div class="field">
     <%= form.label :category_id %>
-    <%= form.select :category_id, Category.all.collect{ |c| [c.book_category, c.id] } %> 
+    <%= form.select :category_id, @all_categories.collect %> 
   </div>
 
   <div class="field">
