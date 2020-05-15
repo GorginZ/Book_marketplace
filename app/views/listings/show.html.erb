@@ -17,7 +17,7 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @listing.category %>
+  <%= @listing.category_id %>
 </p>
 
 <p>
@@ -35,7 +35,7 @@
   <%= @listing.visible %>
 </p>
 
-<% if can? %>
+<% if can? :edit, Listing %>
 <%= link_to 'Edit', edit_listing_path(@listing) %> 
 <%else%>
 <%= link_to 'Back', listings_path %>
