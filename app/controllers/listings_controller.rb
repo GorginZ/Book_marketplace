@@ -13,11 +13,14 @@ class ListingsController < ApplicationController
   # GET /listings/1
   # GET /listings/1.json
   def show
+    @category = Category.find_by_id(@listing.category_id).book_category 
   end
 
   # GET /listings/new
   def new
     @listing = Listing.new
+    @all_categories = Category.all.collect{ |c| [c.book_category, c.id] }
+
   end
 
   # GET /listings/1/edit
@@ -76,6 +79,6 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.require(:listing).permit(:title, :ISBN, :author, :category, :category_id, :keywords, :available, :visible)
+      params.require(:listing).permit(:title, :ISBN, :author, :category_id, :keywords, :available, :visible)
     end
 end
