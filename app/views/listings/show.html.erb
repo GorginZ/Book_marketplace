@@ -17,7 +17,7 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @listing.category_id %>
+  <%= Category.find_by_id(@listing.category_id).book_category %>
 </p>
 
 <p>
