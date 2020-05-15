@@ -6,12 +6,15 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+    <% if user_signed_in?%>
     <button type="button" class="btn btn-outline-secondary">
   Inbox <span class="badge badge-light">4</span>
 </button>
+<%end%>
       <li class="nav-item">
      <%= link_to 'Categories', categories_path, class: "nav-link" %>
       </li>
+      <% if user_signed_in?%>
       <li class="nav-item">
         <%= link_to 'My Listings', new_listing_path, class: "nav-link" %>
       </li>
@@ -28,6 +31,7 @@
           <%= link_to 'Manage Account', edit_user_registration_path, class: "nav-link" %>
         </div>
       </li>
+      <%end%>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="title, author, ISBN, category" aria-label="Search">
