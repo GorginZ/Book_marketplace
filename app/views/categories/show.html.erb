@@ -12,8 +12,21 @@
 <%= link_to 'Back', categories_path %>
 
   <% if can? :edit, @category %>
-            <td><%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-info' %></td>
+            <td><%= link_to 'Edit Category', edit_category_path(@category), class: 'btn btn-info' %></td>
           <% end %>
-       
+        <% puts @category_listing %>
         </tr>
-     
+    <div class= "listings" >
+<% @category_listing.each do |category_listing| %>
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="pictures of books">
+  <div class="card-body">
+    <p class="card-text"> <h3><%= link_to truncate(category_listing.title), category_listing %></h3>
+            <p><%= truncate(category_listing.author, length: 150) %></p></p>
+       </div>
+    </div>
+  </div>
+ <% end %>
+
+
+</div>

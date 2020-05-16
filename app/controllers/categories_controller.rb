@@ -9,6 +9,8 @@ class CategoriesController < ApplicationController
       # GET /listings/1
       # GET /listings/1.json
       def show
+      #  @category_listing = Listing.select{ |listing| listing.category_id == @categegory_id }
+       @category_listing = Listing.where("category_id = ?", params[:id])
       end
     
       # GET /listings/new
@@ -54,6 +56,10 @@ class CategoriesController < ApplicationController
             format.json { render json: @category.errors, status: :unprocessable_entity }
           end
         end
+      end
+
+      def listing_categories
+        @listings = category_id.listings   #will this
       end
     
       # DELETE /listings/1
