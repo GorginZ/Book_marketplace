@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-
+# load_and_authorize_resource
     def index
         @categories = Category.all
       end
@@ -14,15 +14,19 @@ class CategoriesController < ApplicationController
       # GET /listings/new
       def new
         @category = Category.new
+        authorize! :create, @category
       end
     
       # GET /listings/1/edit
       def edit
+        authorize! :edit, @category
+
       end
     
       # POST /listings
       # POST /listings.json
       def create
+        authorize! :create, @category
         @category = Category.new(category_params)
     
         respond_to do |format|
@@ -39,6 +43,8 @@ class CategoriesController < ApplicationController
       # PATCH/PUT /listings/1
       # PATCH/PUT /listings/1.json
       def update
+        authorize! :update, @category
+
         respond_to do |format|
           if @category.update(category_params)
             format.html { redirect_to @category, notice: 'category was successfully updated.' }
@@ -53,6 +59,8 @@ class CategoriesController < ApplicationController
       # DELETE /listings/1
       # DELETE /listings/1.json
       def destroy
+        authorize! :destroy, @category
+
         @category.destroy
         respond_to do |format|
           format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
