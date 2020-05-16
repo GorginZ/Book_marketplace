@@ -8,6 +8,8 @@ class ListingsController < ApplicationController
   # GET /listings.json
   def index
     @listings = Listing.all
+    # @category_id = Category.find_by_id(@listing.category_id)
+
 
   end
 
