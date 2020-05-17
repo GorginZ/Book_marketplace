@@ -33,14 +33,23 @@
       </li>
       <%end%>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="title, author, ISBN, category" aria-label="Search">
-      <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
+
+   <%= form_tag(search_page_path, :method => "get",   
+    class: 'navbar-form navbar-left') do %>  
+  <div class="input-group">  
+    <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
+    <div class="input-group-btn">  
+      <%= button_tag "Search", :class => 'btn btn-outline-info my-2 my-sm-0',:name => nil%>  
+    </div>  
+  </div>  
+<% end %>
+
   <% if user_signed_in?%>
           <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "nav-link" %>
         <%else%>
           <%= link_to 'Sign in', new_user_session_path, class: "nav-link" %>
         <%end%>
 </nav>
+
+
+
