@@ -1,7 +1,8 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  
+  # load_and_authorize_resource
+
 
 
   # GET /listings
@@ -28,6 +29,9 @@ class ListingsController < ApplicationController
 
   # GET /listings/1/edit
   def edit
+    @all_categories = Category.all.collect{ |c| [c.book_category, c.id] }
+    authorize! :edit, @listing
+
   end
 
   # POST /listings
@@ -83,6 +87,6 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.require(:listing).permit(:title, :ISBN, :author, :category_id, :keywords, :available, :visible)
+      params.require(:listing).permit(:title, :ISBN, :author, :category_id, :keywords, :available, :visible, :price)
     end
 end

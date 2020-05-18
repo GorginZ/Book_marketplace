@@ -13,9 +13,15 @@ class Ability
             can :manage, :all
           else
             can :read, :all
+            
           end #is this enough ends?
+          #users are able to edit and delete their own listings and manage their own accounts
+      can :create, Listing
+      can [:edit, :update, :destroy], Listing, user_id: user.id
+      can [:edit, :update, :destroy], User, user_id: user.id
         end
       end
+      
     end
     # Define abilities for the passed in user here. For example:
     #
