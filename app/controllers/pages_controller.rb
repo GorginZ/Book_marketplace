@@ -8,7 +8,7 @@ def search
       redirect_to(root_path, alert: 'Empty field!')
     else
       @parameter = params[:search].downcase
-      @listings = Listing.all.where('(title||author||keywords) LIKE :search', search: "%#{@parameter}%")
+      @listings = Listing.all.where('(title||author||keywords||isbn) LIKE :search', search: "%#{@parameter}%")
 
     end
   end
