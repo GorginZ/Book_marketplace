@@ -16,26 +16,33 @@
     <%= form.text_field :title %>
   </div>
 
+ <br>
+    
+
   <div class="field">
     <%= form.label :ISBN %>
-    <%= form.text_field :ISBN %>
+    <%= form.text_field :ISBN, :size => 10, :minlength => 9,:maxlength => 10 %>
   </div>
-
+ <br>
   <div class="field">
     <%= form.label :author %>
     <%= form.text_field :author %>
   </div>
 
-
+ <br>
    <div class="field">
     <%= form.label :category_id %>
     <%= form.select :category_id, @all_categories.collect %> 
   </div>
-
+ <br>
   <div class="field">
     <%= form.label :keywords %>
     <%= form.text_field :keywords %>
+     <br>
+    <%= "(Category title as above well as details to help people search for your listing. E.g : Literature, Literary Theory)"%>
   </div>
+
+<br>
 
   <div class="field">
     <%= form.label :available %>
@@ -46,8 +53,9 @@
     <%= form.label :visible %>
     <%= form.check_box :visible %>
   </div>
-
+ <br>
   <div class="actions">
     <%= form.submit %>
   </div>
+   <br>
 <% end %>
