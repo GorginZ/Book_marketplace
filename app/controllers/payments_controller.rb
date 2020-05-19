@@ -24,7 +24,7 @@ class PaymentsController < ApplicationController
       end
       
 def success
-  #Order.create
+  # Order.create
   redirect to my_orders_path
 end
 
