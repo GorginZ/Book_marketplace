@@ -1,27 +1,36 @@
 <p id="notice"><%= notice %></p>
 
 <h1>My Listings</h1>
+<br>
+            <th scope="col" colspan='3'><%= link_to 'New Listing', new_listing_path %></th>
+
 <div class= "container" >
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Title</th>
-        <th scope="col">Summary</th>
-        <th scope="col">What go here</th>
-        <th scope="col" colspan='3'><%= link_to 'New Listing', new_listing_path %></th>
+        <th scope="col">Author</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">Manage Listing</th>
+        <th scope="col">Delete Listing</th>
+
+        
+        <br>
       </tr>
     </thead>
     <tbody>
       <% @listings.each do |listing| %>
         <tr>
           <th scope="row"><%= link_to listing.title, listing %></th>
-          <td><%= listing.available %></td>
-          <td><%= listing.visible %></td>
+          <th scope="row"><%= link_to listing.author, listing %></th>
+          <th scope="row"><%= link_to listing.isbn, listing %></th>
+
+
           <% if can? :edit, listing %>
             <td><%= link_to 'Edit', edit_listing_path(listing), class: 'btn btn-info' %></td>
           <% end %>
           <% if can? :destroy, listing %>
-            <td><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+            <td><%= link_to 'Delete', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
           <% end %>
         </tr>
       <% end %>

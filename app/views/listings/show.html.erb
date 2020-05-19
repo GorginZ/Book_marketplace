@@ -32,9 +32,12 @@
 </p>
 
 <p>
-  <strong>Visible:</strong>
-  <%= @listing.visible %>
+  <strong>Price:</strong>
+  <%= @listing.price %>
 </p>
+
+
+
 <%= link_to 'Back', listings_path %>
 
 <% if can? :edit, Listing %>
