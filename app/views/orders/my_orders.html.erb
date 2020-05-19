@@ -5,17 +5,26 @@
     <thead>
       <tr>
         <th scope="col">Title</th>
-        <th scope="col">Summary</th>
-        <th scope="col">What go here</th>
-        <th scope="col" colspan='3'><%= link_to 'New Listing', new_listing_path %></th>
+        <th scope="col">Author</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">Price</th>
+        <th scope="col">Purchased</th>
+
       </tr>
     </thead>
     <tbody>
       <% @orders.each do |order| %>
         <tr>
-          <th scope="row"><%= link_to listing.title, listing %></th>
-          <td><%= order.available %></td>
-          <td><%= order.visible %></td>
+          <td><%= order.listing.title %></td>
+          <td><%= order.listing.author %></td>
+          <td><%= order.listing.isbn %></td>
+          <td><%= order.listing.price %></td>
+          <td><%= order.listing.created_at %></td>
+
+
+        </tr>
+        <% end %>
     </tbody>
   </table>
 </div>
+
