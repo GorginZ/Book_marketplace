@@ -40,3 +40,14 @@
 <% if can? :edit, Listing %>
 <%= link_to 'Edit', edit_listing_path(@listing) %> 
 <%end%>
+
+
+<% if flash[:success] %>
+  <p><%= flash[:success] %></p>
+<% end %>
+
+<%= link_to "Buy", "", id: "stripe" %>
+
+<%= javascript_pack_tag "stripe" %>
+
+

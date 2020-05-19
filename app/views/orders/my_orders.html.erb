@@ -1,0 +1,21 @@
+<h1> Your Orders </h1>
+
+<div class= "container" >
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Summary</th>
+        <th scope="col">What go here</th>
+        <th scope="col" colspan='3'><%= link_to 'New Listing', new_listing_path %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <th scope="row"><%= link_to listing.title, listing %></th>
+          <td><%= order.available %></td>
+          <td><%= order.visible %></td>
+    </tbody>
+  </table>
+</div>
