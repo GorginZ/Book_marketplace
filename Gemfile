@@ -62,3 +62,4 @@ gem "faker", "~> 2.11"
 gem "table_print", "~> 1.5"
 
 gem "stripe"
+gem "aws-sdk-s3", "~> 1.65"
