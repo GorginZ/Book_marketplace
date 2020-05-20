@@ -1,10 +1,19 @@
-<h1> Categories </h1>
+<p id="notice"><%= notice %></p>
 
-<div class="title-container">
+<h1>Categories</h1>
+<div>
   <% if can? :create, @category %>
     <%= link_to 'New Category', new_category_path, class: "btn btn-default" %>
   <% end %>
 </div>
-<p id="notice"><%= notice %></p>
 
-<%= render 'category_cards' %>
+<div class= "container" >
+  <div class="row">
+      <% @categories.each do |category| %>
+        <% @category = category %>
+        <%= render partial: 'category_cards', category: @category %>  
+    <% end %>
+  </div>
+</div>
+
+

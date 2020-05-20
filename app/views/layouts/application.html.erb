@@ -14,10 +14,12 @@
   <body>
     <%= render 'shared/navbar' %>    
     <div class="container">
-   
-    <%= yield %>
-      </div>
 
+       <main class="container-fluid">
+    <%= yield %>
+             </div>
+
+</main>
     <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
   </body>
