@@ -1,7 +1,7 @@
 <div class= "card" >
 <% @listings.each do |listing| %>
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="pictures of books">
+  <%= image_tag listing.picture, :class => "card-img-top" if listing.picture.attached?%>
   <div class="card-body">
     <p class="card-text"> <h3><%= link_to truncate(listing.title), listing %></h3>
             <p><%= truncate(listing.author, length: 150) %></p></p>

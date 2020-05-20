@@ -54,13 +54,15 @@
     <%= form.check_box :available %>
   </div>
 
-  <div class="field">
-    <%= form.label :visible %>
-    <%= form.check_box :visible %>
-  </div>
  <br>
+   <div>
+  <%= form.label :picture %> 
+  <%= form.file_field :picture, accept: 'image/png,image/gif,image/jpeg,image/jpg' %>
+</div>
+<br>
   <div class="actions">
     <%= form.submit %>
   </div>
    <br>
+ 
 <% end %>

@@ -1,7 +1,7 @@
 <div class= "categories" >
 <% @categories.each do |category| %>
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="pictures of books">
+  <%= image_tag category.picture, :class => "card-img-top" if category.picture.attached?%>
   <div class="card-body">
     <p class="card-text"> <h3><%= link_to truncate(category.book_category), category %></h3>
             <p><%= truncate(category.summary, length: 150) %></p></p>
