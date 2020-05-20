@@ -1,3 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Categories</h1>
+<div class= "container" >
+  <div class="row">
+      <% @category.each do |category| %>
+        <% @category = category %>
+        <%= render partial: 'category_cards', category: @category %>  
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 <h1> Categories </h1>
 
 <div class="title-container">
@@ -8,3 +30,5 @@
 <p id="notice"><%= notice %></p>
 
 <%= render 'category_cards' %>
+
+

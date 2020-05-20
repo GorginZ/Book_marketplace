@@ -1,3 +1,18 @@
+ <% category = @category %>
+
+<div class="col-lg-3">
+    <div class= "thumbnail">
+        <div class="caption">
+            <h3><%= link_to truncate(category.name), category %></h3>
+            <p><%= truncate(category.summary, length: 150) %></p>
+            <%= image_tag category.picture, :class => "card-img-top" if category.picture.attached?%>
+        </div>
+    </div>
+</div>
+ 
+ 
+ 
+ 
   <div class="card-container">
   <div class="card">
 <% @categories.each do |category| %>

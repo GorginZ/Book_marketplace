@@ -1,33 +1,11 @@
-<div class= "card" >
-<% @listings.each do |listing| %>
-<div class="card" style="width: 18rem;">
-  <%= image_tag listing.picture, :class => "card-img-top" if listing.picture.attached?%>
-  <div class="card-body">
-    <p class="card-text"> <h3><%= link_to truncate(listing.title), listing %></h3>
-            <p><%= truncate(listing.author, length: 150) %></p></p>
-       </div>
-    </div>
-  </div>
- <% end %>
-</div>
+<% listing = @listing %>
 
-
-<div class= "container" >
-  <% @listings.each do |listing| %>
-      <% if listing.available %>
-      <div class= "container">
-        <div class= "thumbnail">
-          <div class="caption">
+<div class="col-lg-3">
+    <div class= "thumbnail">
+        <div class="caption">
             <h3><%= link_to truncate(listing.title), listing %></h3>
             <p><%= truncate(listing.author, length: 150) %></p>
-        
-           <%= image_tag listing.picture, :class => "card-img-top" if listing.picture.attached?%>
-
-          </div>
+            <%= image_tag listing.picture, :class => "card-img-top" if listing.picture.attached?%>
         </div>
-      </div>
-    <% end %>
-  <% end %>
+    </div>
 </div>
-
-

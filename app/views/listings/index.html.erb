@@ -1,8 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listings</h1>
-
-<%= render 'listings_cards' %>
+<div class= "container" >
+  <div class="row">
+      <% @listings.each do |listing| %>
+        <% @listing = listing %>
+        <%= render partial: 'listings_cards', listing: @listing %>  
+    <% end %>
+  </div>
+</div>
 
 
 <%= link_to 'New Listing', new_listing_path %>
