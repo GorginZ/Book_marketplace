@@ -1,4 +1,5 @@
-<div class= "categories" >
+  <div class="card-container">
+  <div class="card">
 <% @categories.each do |category| %>
 <div class="card" style="width: 18rem;">
   <%= image_tag category.picture, :class => "card-img-top" if category.picture.attached?%>
@@ -10,3 +11,6 @@
   </div>
  <% end %>
 </div>
+</div>
+
+
