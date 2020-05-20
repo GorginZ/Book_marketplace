@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
     
 def index
+  @listings = Listing.where(available: true)
+
 end
 
 def search

@@ -1,6 +1,4 @@
 
-<br>
-<br>
 <h1> UNIBOOKS </h1>
 <br>
 <div class = "search_bar_container">
@@ -17,7 +15,17 @@
       </form>
       </div>
 <% end %>
+
 </div>
+<div class= "container" >
+  <div class="row">
+      <% @listings.each do |listing| %>
+        <% @listing = listing %>
+        <%= render partial: 'listings/listings_cards', listing: @listing %>  
+    <% end %>
+  </div>
+</div>
+
 
 
 
