@@ -28,9 +28,8 @@ class PaymentsController < ApplicationController
 def success
   redirect_to my_orders_path
 end
-
+#the webhook action changes the availability attribute of the instance variable 'availability' to 'false' and saves the listing object.
 def webhook
-  
   payment_id = params[:data][:object][:payment_intent]
   payment = Stripe::PaymentIntent.retrieve(payment_id)
   listing_id = payment.metadata.listing_id

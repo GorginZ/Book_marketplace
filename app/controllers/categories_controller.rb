@@ -66,9 +66,10 @@ class CategoriesController < ApplicationController
         end
       end
 
-      def listing_categories
-        @listings = category_id.listings   #will this
-      end
+      #I don't remmeber making this pretty sure it does nothing doesn't make sense looks like the begginning of a thought. commenting out and will delete later
+      # def listing_categories
+      #   @listings = category_id.listings  
+      # end
     
       # DELETE /listings/1
       # DELETE /listings/1.json
