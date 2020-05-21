@@ -69,7 +69,7 @@ class ListingsController < ApplicationController
       end
     end
   end
-      # users can view their listings which are sorted by whether they are sold or not. sold listings become available: false when that listing object is associated with a new order object in payment controller webhook action
+      # users can view their listings which are sorted by whether they are sold or not. sold listings become available=false when that listing object is associated with a new order object in payment controller's webhook action
   def my_listings
     @listings = current_user.listings.where(available: true)
    @sold_listings = current_user.listings.where(available: false)
@@ -93,7 +93,7 @@ class ListingsController < ApplicationController
       @listing = Listing.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # params needed for above actions and interaction with listing objects in app.
     def listing_params
       params.require(:listing).permit(:title, :isbn, :author, :category_id, :keywords, :available, :price, :picture)
     end
