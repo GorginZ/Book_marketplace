@@ -2,14 +2,15 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   #only users who are authenticated can perform CRUD
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  
+  #comments will refer to the code below the comment
     def index
         @categories = Category.all
       end
       # GET /listings/1
       # GET /listings/1.json
 
-      #this below query accesses all listings with a category_id equal to the selected category object. category_id is a foreign key attribute in listings and corresponds to the primary key of a category object. This below query allows me to access all listings with the given category ID. This feeds the view with the correct Listings objects when users clicks 'categories' -> 'a category (eg law)' -> then renders all listings with a category_id foreign key equal to  primary key of the law category object.
+      #this query accesses all listings with a category_id equal to the selected category object. category_id is a foreign key attribute in listings and corresponds to the primary key of a category object. This below query allows me to access all listings with the given category ID attribute. This feeds the show view with the correct Listings objects when the show method is called on @category_listings in the view 
+      #example user navigates to 'categories' -> 'selects a category (eg law)' -> the view then renders all listings with a category_id foreign key equal to  primary key of the law category object.
       def show
        @category_listing = Listing.where("category_id = ?", params[:id])
       end

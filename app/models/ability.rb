@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+#By passing appropriate arguments to the can method I define different user abilities using this model method. The can method requires two arguments. The action the permission is being set for and the class of object it is set on. In the example below a user has can ability method called on it, the action being given permission is :read and the object is Listing, with an additional conditional statment if public is equal to true. Users can read all listings that are public = true. 
+#Another example is the admin user. an admin user can manage all. So by using the can ability  model method I can achieve different user permissions throughout the app.
 class Ability
       include CanCan::Ability  
     
