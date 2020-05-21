@@ -9,7 +9,7 @@ class ListingsController < ApplicationController
   # GET /listings.json
   def index
     # @listings = Listing.all
-    # only listings that are not sold will render
+    # only listings that are not sold will render so there aren't problematic duplicates of liistings
     @listings = Listing.where(available: true)
   end
 
@@ -62,18 +62,13 @@ class ListingsController < ApplicationController
       end
     end
   end
-  
+      # users can view their listings which are sorted by whether they are sold or not. sold listings become available: false when that listing object is associated with a new order object in payment controller webhook action
   def my_listings
-    # users can view their listings which are sorted by whether they are sold or not. sold listings become available: false when that listing object is associated with a new order object in payment controller webhook action
     @listings = current_user.listings.where(available: true)
    @sold_listings = current_user.listings.where(available: false)
 
 
   end
-
-  # def listing_available
-  #   @listing = Listing.all.where(:available = true)
-  # end
 
   # DELETE /listings/1
   # DELETE /listings/1.json
