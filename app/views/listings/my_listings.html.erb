@@ -14,7 +14,6 @@
         <th scope="col">Manage Listing</th>
         <th scope="col">Delete Listing</th>
 
-        
         <br>
       </tr>
     </thead>
@@ -25,7 +24,7 @@
           <th scope="row"><%= link_to listing.author, listing %></th>
           <th scope="row"><%= link_to listing.isbn, listing %></th>
 
-
+          
           <% if can? :edit, listing %>
             <td><%= link_to 'Edit', edit_listing_path(listing), class: 'btn btn-info' %></td>
           <% end %>
@@ -35,5 +34,37 @@
         </tr>
       <% end %>
     </tbody>
+  </table>
+</div>
+
+
+
+
+<h1>My Sold Listings</h1>
+<br>
+
+<div class= "container" >
+  <table class="table">
+ 
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">Buyer</th>
+
+        <br>
+      </tr>
+   
+
+      <% @sold_listings.each do |sold_listing| %>
+        <tr>
+          <th scope="row"><%= link_to sold_listing.title, sold_listing %></th>
+          <th scope="row"><%= link_to sold_listing.author, sold_listing %></th>
+          <th scope="row"><%= link_to sold_listing.isbn, sold_listing %></th>
+
+          
+        
+      <% end %>
+ 
   </table>
 </div>

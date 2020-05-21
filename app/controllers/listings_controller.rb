@@ -65,6 +65,9 @@ class ListingsController < ApplicationController
   
   def my_listings
     @listings = current_user.listings
+   @sold_listings = current_user.listings.where(available: false)
+
+
   end
 
   # def listing_available

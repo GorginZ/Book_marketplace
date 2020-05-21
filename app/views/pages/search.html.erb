@@ -1,5 +1,13 @@
 <h1>Search Results </h1>
  
 
-  
- <%= render :partial => 'listings/listings_cards' %>
+</div>
+<div class= "container" >
+  <div class="row">
+      <% @listings.each do |listing| %>
+        <% @listing = listing %>
+        <%= render partial: 'listings/listings_cards', listing: @listing %>  
+    <% end %>
+  </div>
+</div>
+
