@@ -1,0 +1,15 @@
+ <% category_listing = @category_listing %>
+
+<div class="col-lg-3">
+    <div class= "thumbnail">
+        <div class="caption">
+            <h3><%= link_to truncate(category_listing.title), category_listing %></h3>
+            <p><%= truncate(category_listing.author, length: 150) %></p>
+            <% if category_listing.picture.attached? %>
+              <%= (image_tag(category_listing.picture))  if category_listing.picture.attached? %>
+            <% else %>
+              <img src="https://picsum.photos/200" class="card-img-top" alt="Image missing">
+            <% end %>        </div>
+    </div>
+</div>
+
