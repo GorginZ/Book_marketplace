@@ -64,7 +64,8 @@ class ListingsController < ApplicationController
   end
   
   def my_listings
-    @listings = current_user.listings
+    # users can view their listings which are sorted by whether they are sold or not. sold listings become available: false when that listing object is associated with a new order object in payment controller webhook action
+    @listings = current_user.listings.where(available: true)
    @sold_listings = current_user.listings.where(available: false)
 
 
