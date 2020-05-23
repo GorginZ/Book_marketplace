@@ -65,3 +65,11 @@ When purchasing:
 * Services (job queues, cache servers, search engines, etc.)
 * Deployment instructions
 * ...
+
+Detail any third party services that your App will use
+
+
+
+
+
+Explain the different high-level components (abstractions) in your App

@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   #only users who are authenticated can perform CRUD
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   #comments will refer to the code below the comment
-  #with_attached_picture scope reduces queries to database to retrieve each picture
+  #with_attached_picture scope reduces queries to database to retrieve each picture. this is possible because categories has a has_one_attached association with :picture which provides preloading when utilising this scope.
     def index
         @categories = Category.with_attached_picture.all.limit(50)
 
@@ -13,10 +13,9 @@ class CategoriesController < ApplicationController
 
       #this query accesses all listings with a category_id equal to the selected category object. category_id is a foreign key attribute in listings and corresponds to the primary key of a category object. This below query allows me to access all listings with the given category ID attribute. This feeds the show view with the correct Listings objects when the show method is called on @category_listings in the view 
       #example user navigates to 'categories' -> 'selects a category (eg law)' -> the view then renders all listings with a category_id foreign key equal to  primary key of the law category object.
+      #with_attached_picture scope able to grab  all images in one query and reduce unecessarily repetetive database queries. double as fasst as was before. This scope is able to be used because listings has has_one_attached: association.
       def show
-        # Listing.joins(:categories)
-        Listing.eager_load(:category)
-       @category_listing = Listing.where("category_id = ?", params[:id])
+       @category_listing = Listing.with_attached_picture.all.where("category_id = ?", params[:id])
   
       end
     
