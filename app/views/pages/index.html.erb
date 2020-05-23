@@ -5,8 +5,11 @@
 
 <div class="jumbotron">
   <h1>Welcome! </h1>
-  <p> browse for new and second hand textbooks, reference and academic texts. Navigate by category or search</p>
-  <p> <%= link_to 'Sign up!', new_user_registration_path, class: "btn btn-info big-lg" %> </p>
+  <br>
+  <p> browse for new and second hand textbooks, reference and academic texts. Navigate by  <%= link_to 'Categories', categories_path, class: "link" %>
+
+ or search by title, author, category or ISBN to find the texts you need for your semester.</p>
+  <p> <%= link_to 'Sign up!', new_user_registration_path, class: "btn btn-info big-lg" %></p>
    <%= form_tag(search_page_path, :method => "get", class: 'search-bar') do %>
         <div class="form-group">
           <%= search_field_tag :search, params[:search], placeholder: 'Search by: title, author, ISBN, category', class: 'form-control' %>
