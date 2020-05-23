@@ -11,7 +11,10 @@ class ListingsController < ApplicationController
     #the other part of this is the webhook action in payments controller. It changes Listing objects attribute 'available' to false and saves the listing object
   # only listings that are not sold (available = true) will render so there aren't problematic duplicates of liistings
   def index
-    @listings = Listing.where(available: true)
+    # @listings = Listing.where(available: true)
+    #with_attached_picture reduces database queries
+    @listings = Listing.where(available: true).with_attached_picture.all.limit(100)
+
   end
 
   # GET /listings/1
