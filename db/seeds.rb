@@ -1,5 +1,4 @@
 # Test admin
-
 # adm = User.create(
 #   user_name: "Admin",
 #   email: 'admin@test.com',
@@ -14,46 +13,99 @@
 #   admin: false
 # )
 # end
-#  Category.create(
-# book_category: "Literature",
-# summary: "Classics, Critical Theory, Literary Criticism"
-#  )
 
-#  Category.create(
-#   book_category: "Law",
-#   summary: "Corporate law, Criminal law, Copywrite law, all the law you want"
-#  )
-#  Category.create(
-#   book_category: "Biomed",
-#   summary: "Cellular biology, neurology"
-#  )
-#  Category.create(
-#   book_category: "Mathematics",
-#   summary: "Calculus, Mathematics theory"
-#  )
-#  Category.create(
-#    book_category: "Philosophy",
-#    summary: "Ethics, Bioethics, Peter Singer, Metaphysics, Peter Singer"
-#  )
+ Category.create(
+book_category: "Literature",
+summary: "Classics, Critical Theory, Literary Criticism"
+ )
+
+ Category.create(
+  book_category: "Law",
+  summary: "Corporate law, Criminal law, Copywrite law, Social Justice Law"
+ )
+ Category.create(
+  book_category: "Biomed",
+  summary: "Immunology, Pathophysiology, Anatomy"
+ )
+ Category.create(
+  book_category: "Mathematics",
+  summary: "Calculus, Mathematics theory"
+ )
+ Category.create(
+   book_category: "Philosophy",
+   summary: "Ethics, Bioethics, Peter Singer, Metaphysics, Peter Singer, Peter Singer"
+ )
 
 #  Category.create(
 #    book_category: "Latin",
 #    summary: "carpe diem"
 #  )
+ Category.create(
+  book_category: "Psychology",
+  summary: "Psychology, Public Health Psychology, Clinical Psychology"
+)
+Category.create(
+  book_category: "Nursing",
+  summary: "Nursing, Surgical Nursing, ICU Nursing, Medical Nursing, Physiology"
+)
 
-20.times do 
+
   Listing.create(
-  title: "textbook",
-  ISBN: 1234567890,
-  author: "author of book",
-  category_id: (1..6).to_a.sample,
-  keywords: "literary theory",
+  title: "Understanding Pathophysiology ED3",
+  isbn:  9780729542647,
+  author: "Judy Craft and Christopher Gordon",
+  category_id: 4,
+  keywords: "biomed, pathophysiology",
+  price: 30.00,
   available: true,
-  visible: true,
-  user_id: (1..11).to_a.sample
+  user_id: 1
   
 )
-end
+Listing.create(
+  title: "Criminal Laws ED6",
+  isbn:   9781862879843,
+  author: "Brown, David",
+  category_id: 3,
+  keywords: "Law criminal law and process of new south whales",
+  price: 70.00,
+  available: true,
+  user_id: 1
+  
+)
+Listing.create(
+  title: "Phsychology ED3",
+  isbn:    9781760422790,
+  author: " Passer, Michael W",
+  category_id: 7,
+  keywords: "Phsychology, science of mind and behaviour",
+  price: 50.00,
+  available: true,
+  user_id: 1
+  
+)
+Listing.create(
+  title: "Lewis's Medial Surgical Nursing ANZ 4th edition",
+  isbn:  9780729541770,
+  author: "Brown, Edwards, Lord Buckley, Seaton",
+  category_id: 8,
+  keywords: "Nursing, managing clinical problems",
+  price: 50.00,
+  available: true,
+  user_id: 1
+  
+)
+Listing.create(
+  title: "Evidence-based Nursing, an introduction",
+  isbn:   9781405145978,
+  author: " Cullum, Nicky",
+  category_id: 8,
+  keywords: "Nursing, managing clinical problems, patient care, clinical outcomes",
+  price: 40.00,
+  available: true,
+  user_id: 1
+  
+)
+
 
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
