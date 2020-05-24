@@ -1,6 +1,8 @@
 # README
 
-**Explain the different high-level components (abstractions) in your App**
+https://uni-textbooks.herokuapp.com/
+
+Explain the different high-level components (abstractions) in your App**
 
 **Active Record** associations perform a number of critical high level functinos behind the scenes in my application. The declared associations between my active record models allow me to use the methods added to my models by these associations to manipuate objects in my database. One basic example is the dependent: :destroy association, which establishes a relation between one model and another, in my case Listings belongs_to :user.  This declared association means if a user is deleted the other objects in Listings model that are dependent on that user  are destroyed, which helps maintain order in the database and prevent orphaned listings.
 
@@ -47,7 +49,71 @@ Likewise AWS provides a critical function by allowing users to add listings to a
 
 
 
-Identify the problem you’re trying to solve by building this particular marketplace App? Why is it a problem that needs solving?
+**Identify the problem you’re trying to solve by building this particular marketplace App? Why is it a problem that needs solving?**
+
+I've been a student at Monash uni the last 6 or so years, and thankfully most of the texts I needed were research papers, however it was impossible not to notice at the beginning and end of every semester hundreds of students posting trying to sell or swap their extremely expensive textbooks, or waiting textbook in hands to meet a student infront of the library to hand over the book/cash. 
+
+Libraries usually only hold one or two copies of an essential required text, and they may only be borrowed for a 7 or 14 day period. Most unis no longer have student run co-ops as student unions have become less relevant and more of booze-cruise organisers. 
+My app aims to be a platform for uni-students to sell and also buy textbooks from other students across campuses across the country. This is particularly useful if a text is not particularly common/popular, as it widens the scope beyond a facebook uni gossip group. 
+
+The idea is that students can search for relevant texts easily, Listings will be organised by category, title, author, keywords and ISBN and can be mailed to the buyer or picked up if appropriate. This app can contribute to making second hand textbook selling and buying a bit more convenient and more broadly acessable. 
+
+
+
+**Describe your project’s models in terms of the relationships (active record associations) they have with each other**
+
+The **Listing** model belongs to user, which allows for a join table between a user and associated listings, which is useful, but also the additional dependent destroy association appended to belongs_to establishes a dependency relationship wherein if the user is deleted so are the listings. This is to help ensure only relevant and useful data remains in the database and no listings that have no user will be available to buy (which would obviously cause problems!)
+
+The Listings also belongs_to a Category. I implemented this association over has_one becaue it allows for a join table between associated objects which can be useful for quering or searching in my database.
+
+Listings also has_one :order. There is a one-to-one connection between listing and order. Each instance of order is associated with a single instance of listing.
+
+```
+class Listing < ApplicationRecord
+    belongs_to :user, dependent: :destroy
+    belongs_to :category 
+    has_one :order
+    has_one_attached :picture
+end
+```
+
+Category
+
+```
+class Category < ApplicationRecord
+  has_many :listings
+  has_one_attached :picture
+end
+```
+
+Category has many listings. A one-to-many connection with Listings.  It's the other side of Listings' belongs_to :category seen above. Each instance of Category may have many instances of Listings associated with that category instance. This association can help me query this association through a join table and find all listings associated with a given category.
+
+Order
+
+```
+class Order < ApplicationRecord
+    belongs_to :user
+    belongs_to :listing
+end
+
+```
+
+Order has one-to-one relations with User and Listing model. Order has exactly one user and one listing associated to each instance of order.
+
+User
+
+```
+class User < ApplicationRecord
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  has_many :listings
+  has_many :orders
+        
+end
+
+```
+
+User has one-to-many associations with Listings and Orders model. Each user may have many Listings and Orders. I can use a join table to access these instances where associations exist in my database. for instance Order.joins(:user) allows me to see orders and associated data through an inner join table.
 
 | R1   | Create your *app* using Ruby on **Rails**.                   |
 | ---- | ------------------------------------------------------------ |
