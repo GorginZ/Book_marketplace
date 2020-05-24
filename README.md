@@ -35,6 +35,20 @@ The views include templates, layouts and partials. Partials are handy and are ht
 
 
 
+**Detail any third party services that your App will use**
+
+I set up a S3 bucket with Amazon Webservices which is associated with my app. I configured my config/environments/production.rb as active_storage service = amazon, so my live heroku app allows files to be attached to certain records and is able to access those files through the active storage associations set up in my models. This is also discussed in some detail above. 
+
+An additional third party service/gem I utilised is stripe. Like AWS I had to configure this with my accounts master and secret keys. The stripe gem allows for mock/test card transactions in my app and in my payments_controller I followed stripe documentation for how to correctly pass the object params and stripe session ID. The metadata stripe uses to associate the transaction to the user is the current user's user_id and the listing in question's listing_id. I also created a second webhook endpoint so that stripe functions correctly in my deployed heroku app, as I noticed although stripe said everything was sucessful, the logic in my webhook was not executing, the listing was not renderd unavailable and the order was not created. This was a simple fix, though as I revised the documentation I simply needed to create an additional endpoint. Now my webhook action succesfully performs sql commands in my live app as well as locally - which saves the listings attribute available as false and it is no longer listed as an available listing, and also creates an order object associated with the listing id, and the user id of the buyer. 
+
+Stipe and the logic associated with the webhook endpoint is essential for my apps full functionality and helps me manipulate data to appropiately reflect the intentions and uses of buyers and sellers using my app.
+
+Likewise AWS provides a critical function by allowing users to add listings to advertise their listings visually.
+
+
+
+Identify the problem you’re trying to solve by building this particular marketplace App? Why is it a problem that needs solving?
+
 | R1   | Create your *app* using Ruby on **Rails**.                   |
 | ---- | ------------------------------------------------------------ |
 | R2   | Use **Postgresql** database in development and production.   |
