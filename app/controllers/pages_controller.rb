@@ -12,7 +12,7 @@ class PagesController < ApplicationController
       redirect_to(root_path, alert: 'Empty field!')
     else
       @parameter = params[:search].downcase
-      @listings = Listing.with_attached_picture.all.where('(title||author||keywords||isbn) LIKE :search', search: "%#{@parameter}%")
+      @listings = Listing.with_attached_picture.all.where('lower(title||author||keywords||isbn) LIKE :search', search: "%#{@parameter}%")
     end
     end
 end
