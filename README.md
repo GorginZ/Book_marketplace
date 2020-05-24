@@ -27,9 +27,11 @@ ActiveStorage::Attachment Load (0.5ms)  SELECT "active_storage_attachments".* FR
 
 My config/environments/test.rb is configured such that my active_storage service is amazon as opposed to local, and so when an image is attached Active Storage generates URL for the file using access keys for the S3 bucket associated with my app.
 
+**Action View**
 
+Action views compiles the views associated with the actions in the controller it is associated to. Each controller will have it's own associated folder within the views directory, which allows for routing to and rendering of those views.
 
-
+The views include templates, layouts and partials. Partials are handy and are htm.erb files that can be rendered in multiple views throughout the app. Temploates are directly associated with an action and must be routed correctly to render. The layouts allow us to specify certain view specifications perhaps for the whole application - as in the application.html.erb file, such as rendering a nav bar, or different views for different users, whether they are logged in or not etc. 
 
 
 
