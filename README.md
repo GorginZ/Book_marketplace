@@ -19,8 +19,6 @@ The active record associations that exist between my models mean that when users
 
 Active recodrd associations are what allow for proper dynamic interaction and smooth operation and updating of my objects in reference and with respect to the appropriate relations and associations that need to exist for funcitnoality. 
 
-
-
 A second example **Active Storage**, follows on from Active Record associations, as the scopes and methods discussed above allows me to access Active Storage attachments. I use active storage attachments to allow users to upload images through Amazon S3. Their uploads become associated with the object they are attaching it to and are able to be queried thorugh that association. The attachment is not in the database table like other attributes of a Listing like title, price etc, however. The way it works is this:  Active storage attachments create a polymorphic join table. It uses two tables, active_storage blobs and active_storage_attachments and it is through this association it is able to attach the file to the record. The SQL it spits out is like so: 
 
 ```
@@ -51,16 +49,19 @@ Likewise AWS provides a critical function by allowing users to add listings to a
 
 **Identify the problem you’re trying to solve by building this particular marketplace App? Why is it a problem that needs solving?**
 
-I've been a student at Monash uni the last 6 or so years, and thankfully most of the texts I needed were research papers, however it was impossible not to notice at the beginning and end of every semester hundreds of students posting trying to sell or swap their extremely expensive textbooks, or waiting textbook in hands to meet a student infront of the library to hand over the book/cash. 
+I've been a student at Monash uni the last 6 or so years, and thankfully most of the texts I needed were research papers, however it was impossible not to notice at the beginning and end of every semester hundreds of students posting on student facebook groups trying to sell or swap their extremely expensive textbooks, or waiting textbook in hand to meet a student infront of the library to hand over the book/cash. 
 
 Libraries usually only hold one or two copies of an essential required text, and they may only be borrowed for a 7 or 14 day period. Most unis no longer have student run co-ops as student unions have become less relevant and more of booze-cruise organisers. 
-My app aims to be a platform for uni-students to sell and also buy textbooks from other students across campuses across the country. This is particularly useful if a text is not particularly common/popular, as it widens the scope beyond a facebook uni gossip group. 
+
+It's annoying and expensive to buy and also re-sell textbooks as a student. My app aims to be a platform for uni-students to sell and also buy textbooks from other students across campuses across the country. This is particularly useful if a text is not particularly common/popular, as it widens the scope beyond a facebook uni gossip group. 
 
 The idea is that students can search for relevant texts easily, Listings will be organised by category, title, author, keywords and ISBN and can be mailed to the buyer or picked up if appropriate. This app can contribute to making second hand textbook selling and buying a bit more convenient and more broadly acessable. 
 
 
 
 **Describe your project’s models in terms of the relationships (active record associations) they have with each other**
+
+Please also see code comments for how I implement the scopes and methods that come with certain associations I have declared between my models.
 
 The **Listing** model belongs to user, which allows for a join table between a user and associated listings, which is useful, but also the additional dependent destroy association appended to belongs_to establishes a dependency relationship wherein if the user is deleted so are the listings. This is to help ensure only relevant and useful data remains in the database and no listings that have no user will be available to buy (which would obviously cause problems!)
 
@@ -77,7 +78,7 @@ class Listing < ApplicationRecord
 end
 ```
 
-Category
+**Category**
 
 ```
 class Category < ApplicationRecord
@@ -88,7 +89,7 @@ end
 
 Category has many listings. A one-to-many connection with Listings.  It's the other side of Listings' belongs_to :category seen above. Each instance of Category may have many instances of Listings associated with that category instance. This association can help me query this association through a join table and find all listings associated with a given category.
 
-Order
+**Order**
 
 ```
 class Order < ApplicationRecord
@@ -100,7 +101,7 @@ end
 
 Order has one-to-one relations with User and Listing model. Order has exactly one user and one listing associated to each instance of order.
 
-User
+**User**
 
 ```
 class User < ApplicationRecord
@@ -114,6 +115,76 @@ end
 ```
 
 User has one-to-many associations with Listings and Orders model. Each user may have many Listings and Orders. I can use a join table to access these instances where associations exist in my database. for instance Order.joins(:user) allows me to see orders and associated data through an inner join table.
+
+**Discuss the database relations to be implemented**
+
+Below is original ERD code from my first day of planning the project
+
+                  ```
+//// -- LEVEL 1
+//// -- Tables and References
+
+// Creating tables
+Table users as U {
+  id bigint [pk, increment] // auto-increment
+  user_name string
+  first_name string
+  last_name string
+  email varchar
+  password varchar
+  is_admin boolean
+  created_at timestamp
+}
+
+Table listings{
+  id bigint [pk, increment] // auto-increment
+  title string
+  ISBN bigint
+  author string
+  category integer
+  keywords text
+  user_id bigint
+  available boolean
+  visible boolean
+  created_at timestamp
+}
+
+
+Ref: "users"."id" < "listings"."user_id"
+
+Table orders{
+  id bigint [pk, increment] // auto-increment
+  user_id bigint
+  listings_id bigint
+  created_at timestamp
+}
+
+
+Table messages{
+  id bigint [pk, increment] // auto-increment
+  receipient_id bigint [ref: > users.id]
+  body text 
+  sender_id bigint [ref: > users.id]
+  created_at timestamp
+}
+
+Table categories{
+  id bigint // auto-increment
+  name string 
+  created_at timestamp
+}
+
+
+Ref: "orders"."listings_id" - "listings"."id"
+
+Ref: "orders"."user_id" < "users"."id"
+
+Ref: "categories"."id" < "listings"."category"
+                  ```
+
+I did not implement a messaging system, for lack of time. In the end this is actually a very accurate representation of the database relations I set up in my finished product.
+
+
 
 | R1   | Create your *app* using Ruby on **Rails**.                   |
 | ---- | ------------------------------------------------------------ |
