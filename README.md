@@ -118,98 +118,91 @@ User has one-to-many associations with Listings and Orders model. Each user may 
 
 **Discuss the database relations to be implemented**
 
-Below is original ERD code from my first day of planning the project
+Key relations in my database to be implemented are as follows:
 
-                  ```
-//// -- LEVEL 1
-//// -- Tables and References
+Listings will have a foreign key which will correspond to a User instance primary key, (user_id), associating a user to an instance of a listing.
 
-// Creating tables
-Table users as U {
-  id bigint [pk, increment] // auto-increment
-  user_name string
-  first_name string
-  last_name string
-  email varchar
-  password varchar
-  is_admin boolean
-  created_at timestamp
-}
+Listings will also have a foreign key value which will correspond to a primary key value of an instance of Category. 
 
-Table listings{
-  id bigint [pk, increment] // auto-increment
-  title string
-  ISBN bigint
-  author string
-  category integer
-  keywords text
-  user_id bigint
-  available boolean
-  visible boolean
-  created_at timestamp
-}
-
-
-Ref: "users"."id" < "listings"."user_id"
-
-Table orders{
-  id bigint [pk, increment] // auto-increment
-  user_id bigint
-  listings_id bigint
-  created_at timestamp
-}
-
-
-Table messages{
-  id bigint [pk, increment] // auto-increment
-  receipient_id bigint [ref: > users.id]
-  body text 
-  sender_id bigint [ref: > users.id]
-  created_at timestamp
-}
-
-Table categories{
-  id bigint // auto-increment
-  name string 
-  created_at timestamp
-}
-
-
-Ref: "orders"."listings_id" - "listings"."id"
-
-Ref: "orders"."user_id" < "users"."id"
-
-Ref: "categories"."id" < "listings"."category"
-                  ```
-
-I did not implement a messaging system, for lack of time. In the end this is actually a very accurate representation of the database relations I set up in my finished product.
+Orders will have a foreign key value that corresponds to a User primary key (user_id) and a foregn key that corresponds to a Listing primary key (listing_id).
 
 
 
-| R1   | Create your *app* using Ruby on **Rails**.                   |
-| ---- | ------------------------------------------------------------ |
-| R2   | Use **Postgresql** database in development and production.   |
-| R3   | Your *app* will have authentication (eg. Devise).            |
-| R4   | Your *app* will have authorisation (i.e. users have restrictions on what they can see and edit). |
-| R5   | Your *app* will have some type of file (eg. images) uploading capability. |
-| R6   | Your *app* is to be deployed to Heroku (recommended) or AWS. |
-
-R3. My app uses the devise Gem for authentication. 
+These relations are visible and represented in the initial ERD schema design code below and in the final ERD imported from my complete project below. 
 
 
 
-**R4. Authorization**
+Below is original ERD code from my first day of planning the project and is my **database schema design**
 
-I used cancancan for authorisation. An example of how this helped me create different restrictions for users with regard to what they can see and edit etc. is the restrictred access to *Category* methods. Only Admin users can use C R U D methods on Categories. This is because the categories that exist are what users will select from when they create a listing when they declare the category of their listing, so it's important they are not duplicated. The category primary key is the foreign key for the listing, allowing  The Category model exists mostly to ensure with easy browsing, and so if Admins are able to edit and add categories accordingly, to do with popularity or to accomidate for certain types of listings, this is a good way to make that easy to manage. 
-With regards to moderation, it also means that admins can remove or edit anything inappropriate or correct errors.
+                  ```//// -- LEVEL 1
+    //// -- Tables and References
+    
+    // Creating tables
+    Table users as U {
+      id bigint [pk, increment] // auto-increment
+      user_name string
+      first_name string
+      last_name string
+      email varchar
+      password varchar
+      is_admin boolean
+      created_at timestamp
+    }
+    
+    Table listings{
+      id bigint [pk, increment] // auto-increment
+      title string
+      ISBN bigint
+      author string
+      category integer
+      keywords text
+      user_id bigint
+      available boolean
+      visible boolean
+      created_at timestamp
+    }
 
- https://github.com/CanCanCommunity/cancancan/wiki/Authorizing-controller-actions
 
-R5. 
+​    
+    Ref: "users"."id" < "listings"."user_id"
+    
+    Table orders{
+      id bigint [pk, increment] // auto-increment
+      user_id bigint
+      listings_id bigint
+      created_at timestamp
+    }
 
-R6. I deployed my app through heroku initially after creating it. I utilised auto-deploy so my app was built after each push to my master on my github Repo. 
 
-User Stories
+​    
+    Table messages{
+      id bigint [pk, increment] // auto-increment
+      receipient_id bigint [ref: > users.id]
+      body text 
+      sender_id bigint [ref: > users.id]
+      created_at timestamp
+    }
+    
+    Table categories{
+      id bigint // auto-increment
+      name string 
+      created_at timestamp
+    }
+
+
+​    
+    Ref: "orders"."listings_id" - "listings"."id"
+    
+    Ref: "orders"."user_id" < "users"."id"
+    
+    Ref: "categories"."id" < "listings"."category"
+
+
+![ERDbook-marketplace](../{GeorgiaLeng}_T2A1/docs/ERDbook-marketplace.png)I did not implement a messaging system, for lack of time (as in initial ERD plan). but in the end my initial plan was how I established my database relations and provide the functionality I had hoped for. The image above is the ERD imported from my finished app schema. The primary key values say varchar, however they ar all integers (unsure of why they come up like that when imported to db diagram).
+
+
+
+**Provide User stories for your App**
 
 as a student I'm generally pressed for cash, and university compulsory text books are expensive. Often students use university social Facebook groups to sell text books and have to meet up on campus at the beginning or end of semester. A web app that creates a forum where users can list and buy from across the country and send and receive texts by post opens this up for wider accessability to second hand texts.
 Users:
@@ -256,4 +249,13 @@ Detail any third party services that your App will use
 
 
 
-Explain the different high-level components (abstractions) in your App
+**R4. Authorization**
+
+I used cancancan for authorisation. An example of how this helped me create different restrictions for users with regard to what they can see and edit etc. is the restrictred access to *Category* methods. Only Admin users can use C R U D methods on Categories. This is because the categories that exist are what users will select from when they create a listing when they declare the category of their listing, so it's important they are not duplicated. The category primary key is the foreign key for the listing, allowing  The Category model exists mostly to ensure with easy browsing, and so if Admins are able to edit and add categories accordingly, to do with popularity or to accomidate for certain types of listings, this is a good way to make that easy to manage. 
+With regards to moderation, it also means that admins can remove or edit anything inappropriate or correct errors.
+
+ https://github.com/CanCanCommunity/cancancan/wiki/Authorizing-controller-actions
+
+R5. 
+
+R6. I deployed my app through heroku initially after creating it. I utilised auto-deploy so my app was built after each push to my master on my github Repo
