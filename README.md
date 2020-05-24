@@ -1,6 +1,55 @@
 # README
 
-https://uni-textbooks.herokuapp.com/
+live app available here: https://uni-textbooks.herokuapp.com/
+Github repo: https://github.com/GorginZ/Book_marketplace
+
+**To run this rails app in development**:
+
+- Clone this repo or download as zip file
+
+- Install the Postgresql app and ensure it is running: download and documentation available here: https://www.postgresql.org/
+- create an AWS account https://aws.amazon.com/s3/  and a Stripe account, you will need credentials in order to utilize these features of the app. https://stripe.com/docs
+
+- In terminal from the directory of the project run:
+
+```
+yarn install
+```
+
+```
+bundle install
+```
+
+```
+rails db:create
+```
+
+This creates a database
+
+```
+rails db:migrate
+```
+
+to run all of the migrations
+
+```
+rails db:seed
+```
+
+for some test data.
+
+```
+rails s
+```
+
+to start the local server. In your browser you can explore the app in development at http://localhost:3000/
+
+Test admin user:
+admin@test.com password: 123456
+
+to explore as a regular user, just create one so you can checkout how the app runs while not signed in and the new_user pathway etc.
+
+
 
 Explain the different high-level components (abstractions) in your App**
 
@@ -37,9 +86,9 @@ The views include templates, layouts and partials. Partials are handy and are ht
 
 **Detail any third party services that your App will use**
 
-I set up a S3 bucket with Amazon Webservices which is associated with my app. I configured my config/environments/production.rb as active_storage service = amazon, so my live heroku app allows files to be attached to certain records and is able to access those files through the active storage associations set up in my models. This is also discussed in some detail above. 
+I set up a S3 bucket with **Amazon Webservices** which is associated with my app. I configured my config/environments/production.rb as active_storage service = amazon, so my live heroku app allows files to be attached to certain records and is able to access those files through the active storage associations set up in my models. This is also discussed in some detail above. 
 
-An additional third party service/gem I utilised is stripe. Like AWS I had to configure this with my accounts master and secret keys. The stripe gem allows for mock/test card transactions in my app and in my payments_controller I followed stripe documentation for how to correctly pass the object params and stripe session ID. The metadata stripe uses to associate the transaction to the user is the current user's user_id and the listing in question's listing_id. I also created a second webhook endpoint so that stripe functions correctly in my deployed heroku app, as I noticed although stripe said everything was sucessful, the logic in my webhook was not executing, the listing was not renderd unavailable and the order was not created. This was a simple fix, though as I revised the documentation I simply needed to create an additional endpoint. Now my webhook action succesfully performs sql commands in my live app as well as locally - which saves the listings attribute available as false and it is no longer listed as an available listing, and also creates an order object associated with the listing id, and the user id of the buyer. 
+An additional third party service/gem I utilised is **Stripe**. Like AWS I had to configure this with my accounts master and secret keys. The stripe gem allows for mock/test card transactions in my app and in my payments_controller I followed stripe documentation for how to correctly pass the object params and stripe session ID. The metadata stripe uses to associate the transaction to the user is the current user's user_id and the listing in question's listing_id. I also created a second webhook endpoint so that stripe functions correctly in my deployed heroku app, as I noticed although stripe said everything was sucessful, the logic in my webhook was not executing, the listing was not renderd unavailable and the order was not created. This was a simple fix, though as I revised the documentation I simply needed to create an additional endpoint. Now my webhook action succesfully performs sql commands in my live app as well as locally - which saves the listings attribute available as false and it is no longer listed as an available listing, and also creates an order object associated with the listing id, and the user id of the buyer. 
 
 Stipe and the logic associated with the webhook endpoint is essential for my apps full functionality and helps me manipulate data to appropiately reflect the intentions and uses of buyers and sellers using my app.
 
@@ -197,8 +246,11 @@ Below is original ERD code from my first day of planning the project and is my *
     
     Ref: "categories"."id" < "listings"."category"
 
+<img src="docs/ERDbook-marketplace.png">
 
-![ERDbook-marketplace](../{GeorgiaLeng}_T2A1/docs/ERDbook-marketplace.png)I did not implement a messaging system, for lack of time (as in initial ERD plan). but in the end my initial plan was how I established my database relations and provide the functionality I had hoped for. The image above is the ERD imported from my finished app schema. The primary key values say varchar, however they ar all integers (unsure of why they come up like that when imported to db diagram).
+
+
+I did not implement a messaging system, for lack of time (as in initial ERD plan). but in the end my initial plan was how I established my database relations and provide the functionality I had hoped for. The image above is the ERD imported from my finished app schema. The primary key values say varchar, however they ar all integers (unsure of why they come up like that when imported to db diagram).
 
 
 
