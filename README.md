@@ -205,57 +205,59 @@ Below is original ERD code from my first day of planning the project and is my *
 **Provide User stories for your App**
 
 as a student I'm generally pressed for cash, and university compulsory text books are expensive. Often students use university social Facebook groups to sell text books and have to meet up on campus at the beginning or end of semester. A web app that creates a forum where users can list and buy from across the country and send and receive texts by post opens this up for wider accessability to second hand texts.
-Users:
+**Users broadly:**
 
 - I want to be able to brows the app easily to explore the features available before creating an account and signing up
-- I want my account to be easily manageable with options to change or update my password and change any key information
+- I want my account to be easily manageable with options to change or update my password so I can feel in control of my account and security.<img src="docs/password.png">
 - I want to feel confident my information and privacy is being treated appropriately and in accordance with laws around personal information such as handling of credit card details and my contact details and only hand over information that is necessary for my own use of the services ( for example, assurance that my password or card details are handled by a trusted third party group that I can read about if I choose )
 - be able to lodge grievances or get help in the instance something doesn't work out for me
 
-When selling:
+**When selling:**
 
-- I want simple listing forms so I can easily add a listing's title, author and category
-- I want to easily manage and view my listings
-- I want to be notified if someone has bought my listing
-- I want to be able to communicate with buyer
+- I want simple listing forms so I can easily add a listing's title, author and category and I want to be able to update or change my listing if necessary<img src="docs/edit.png">
+- I want to easily manage and view my listings with clear differentiation between sold and unsold<img src="docs/my_listings.png">I want to be able to communicate with a buyer
 - I want to be able to list pick-up options, incase the buyer is local and that is preferable
 
-When purchasing:
+**When purchasing:**
 
-- I want to be able to easily brows for texts and see what is available before making an account
-- I want a search function
--  I want to be able to communicate with who I am buying from
+- I want to be able to easily brows for texts and see what is available **before** making an account so I don't have to waste time incase I'm not interested or what I want isn't available. 
+
+- <img src="docs/landing.png">
+
+- I want a comprehensive functional search function so I don't have to manually navigate through listings and categories
+
+- I want to be able to communicate with who I am buying from
+
+- I want my orders to be visually confirmed after a transaction so I feel assured my purchase has been successful, for instance re-directing to a page of my orders after transaction completed.<img src="docs/my_orders.png">
+
 - I want a basic level of protection when purchasing, I want to be able to raise an issue with an administrator if I did not recieve an item or have an issue, if I am unable to resolve this with the seller I'd like to know I may be able to make a complaint or have an issue resolved with support.
 
 
+  I was not able to implement every element of my user stories, but have left them all here nonetheless as I feel they are important considerations for this style of app. I feel confident most of the bare necessities of my user stories were met and they guided how I prioritised implementing features throughout the project.
+
+  
+
+**Describe the way tasks are planned and tracked in your project**
+
+I utilised Trello throughout the duration of the project - the board is availble here where all the different deadlines and checked off things can be viewed in full: https://trello.com/b/atUDzCoU/rails-marketplace . I utilised Trellos deadlines and checklist features to help breakdown my goals into smaller tasks and each evening would adjust the cards with any new problems to solve, or to clearly break something down into a seperate task - to prevent myself trying to work on multiple features at once ( or in the same branch ). Usually a card is represented by an equiviallent branch on my git repo, as I tried to use the cards as a way to implement a feature on the ruberic or a problem I was facing and keep everything compartmentalised and keep a focused approach to my planned features. This helped me prioritise and implement features in an appropriate order and leave things like styling or additional features until the very end by reminding me what needed to be prioritised.
+
+<img src="docs/planning.png">
 
 
 
+**ERD provided represents a normalised database model**
 
+​                  ERD is provided above, both original erd code schema plan and a visual ERD of finished product representing the schema of final product.
 
-* Ruby version
-* System dependencies
-* Configuration
-* Database creation
-* Database initialization
-* How to run the test suite
-* Services (job queues, cache servers, search engines, etc.)
-* Deployment instructions
-* ...
-
-Detail any third party services that your App will use
+**Ruberic criteria below this point is all addressed in code itself or code comments or not approriate to answer in read me.** 
 
 
 
+**Authorization****
 
-
-**R4. Authorization**
-
-I used cancancan for authorisation. An example of how this helped me create different restrictions for users with regard to what they can see and edit etc. is the restrictred access to *Category* methods. Only Admin users can use C R U D methods on Categories. This is because the categories that exist are what users will select from when they create a listing when they declare the category of their listing, so it's important they are not duplicated. The category primary key is the foreign key for the listing, allowing  The Category model exists mostly to ensure with easy browsing, and so if Admins are able to edit and add categories accordingly, to do with popularity or to accomidate for certain types of listings, this is a good way to make that easy to manage. 
+I used cancancan for authorisation in my app. An example of how this helped me create different restrictions for users with regard to what they can see and edit etc. is the restrictred access to *Category* methods. Only Admin users can use C R U D methods on Categories. This is because the categories that exist are what users will select from when they create a listing when they declare the category of their listing, so it's important they are not duplicated. The Category model exists mostly to ensure easy browsing and to provide another attribute for the search function, and so if Admins are able to edit and add categories accordingly, to do with popularity or to accomidate for certain types of listings, this is a good way to make that easy to manage. 
 With regards to moderation, it also means that admins can remove or edit anything inappropriate or correct errors.
 
  https://github.com/CanCanCommunity/cancancan/wiki/Authorizing-controller-actions
 
-R5. 
-
-R6. I deployed my app through heroku initially after creating it. I utilised auto-deploy so my app was built after each push to my master on my github Repo
+R6. I deployed my app through heroku initially after creating it. I utilised auto-deploy so my app was built after each push to my master on my github Repo, this allowed me to check it was always working.
