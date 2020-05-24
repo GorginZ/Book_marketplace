@@ -1,18 +1,18 @@
 # Test admin
-# adm = User.create(
-#   user_name: "Admin",
-#   email: 'admin@test.com',
-#   password: '123456',
-#   admin: true
-# )
-# 10.times do 
-#   User.create(
-#   user_name: Faker::Name.name,
-#   email: Faker::Internet.email,
-#   password: '123456',
-#   admin: false
-# )
-# end
+adm = User.create(
+  user_name: "Admin",
+  email: 'admin@test.com',
+  password: '123456',
+  admin: true
+)
+10.times do 
+  User.create(
+  user_name: Faker::Name.name,
+  email: Faker::Internet.email,
+  password: '123456',
+  admin: false
+)
+end
 
  Category.create(
 book_category: "Literature",
@@ -36,10 +36,10 @@ summary: "Classics, Critical Theory, Literary Criticism"
    summary: "Ethics, Bioethics, Peter Singer, Metaphysics, Peter Singer, Peter Singer"
  )
 
-#  Category.create(
-#    book_category: "Latin",
-#    summary: "carpe diem"
-#  )
+ Category.create(
+   book_category: "Latin",
+   summary: "carpe diem"
+ )
  Category.create(
   book_category: "Psychology",
   summary: "Psychology, Public Health Psychology, Clinical Psychology"
