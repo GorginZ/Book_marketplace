@@ -313,3 +313,7 @@ With regards to moderation, it also means that admins can remove or edit anythin
  https://github.com/CanCanCommunity/cancancan/wiki/Authorizing-controller-actions
 
 R6. I deployed my app through heroku initially after creating it. I utilised auto-deploy so my app was built after each push to my master on my github Repo, this allowed me to check it was always working.
+
+
+
+<img src="docs/uni-textbookswireframes.pdf">
