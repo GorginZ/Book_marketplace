@@ -4,7 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :listings
-  has_many :orders
-  #what about admins? has many categories how does that work?       
-        
+  has_many :orders        
 end
